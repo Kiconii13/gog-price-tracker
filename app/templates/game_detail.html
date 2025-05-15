@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ game.name }}{% endblock %}
+
+{% block content %}
+<h2>{{ game.name }} – istorija cena</h2>
+
+<canvas id="priceChart" width="600" height="300"></canvas>
+
+<script>
+    const prices = {{ prices|tojson }};
+    const labels = prices.map(p => p.date);
+    const data = prices.map(p => p.price);
+
+    const ctx = document.getElementById('priceChart').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Cena (€)',
+                data: data,
+                fill: false,
+                borderColor: 'blue',
+                tension: 0.3
+            }]
+        }
+    });
+</script>
+
+{% endblock %}
