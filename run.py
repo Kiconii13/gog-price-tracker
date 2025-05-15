@@ -1,4 +1,4 @@
-# __init__.py ili glavni fajl za pokretanje
+# run.py ili glavni fajl za pokretanje
 
 from app import create_app
 
